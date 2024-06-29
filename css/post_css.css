@@ -1,0 +1,27 @@
+html,
+body {
+    font-family: "Georgia", serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+embed {
+    border: none;
+    width: 60vw; /* Set width to 90% of the viewport width */
+    height: 90vh; /* Set height to 90% of the viewport height */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add a subtle shadow for better visibility */
+}
