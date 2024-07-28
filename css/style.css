@@ -47,7 +47,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: black;
+    color: #5c4033;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -67,8 +67,7 @@ a {
 
 a.active,
 a:hover {
-    background-color: #a71f13;
-    color: #f3ece4;
+    color: #5c4033;
 }
 
 #content a {
@@ -76,15 +75,8 @@ a:hover {
 }
 
 #content a:hover {
-    color: #a71f13;
-}
-
-#content a:visited {
-    color: black;
-}
-
-#content a:visited:hover {
-    color: #a71f13;
+    background-color: #a71f13;
+    color: #f3ece4;
 }
 
 #content {
@@ -100,6 +92,14 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#blog {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 2rem 20rem 20rem 20rem;
+
 }
 
 .profile-photo {
