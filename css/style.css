@@ -19,14 +19,25 @@ body {
     min-height: 100vh;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: transparent;
-    /* background: linear-gradient(180deg, #4a90e2, #1c3d72); */
+.header {
+    color: #2e201a;
+    font-size: 1em;
+    display: flex;                    /* Enable flexbox */
+    justify-content: center;          /* Center items horizontally */
+    align-items: center; 
+    padding-top: 3%;
+
 }
+
+.navbar {
+    display: flex;                    /* Enable flexbox */
+    justify-content: center;          /* Center items horizontally */
+    align-items: center;              /* Center items vertically */
+    background: transparent;          /* Use your preferred background */
+    padding-top: 3%;
+    /* background: linear-gradient(180deg, #4a90e2, #1c3d72); */ /* Optional background */
+}
+
 
 .brand {
     font-size: 1.5em;
