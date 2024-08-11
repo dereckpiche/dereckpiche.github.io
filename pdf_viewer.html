@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Viewer</title>
-    <link rel="stylesheet" href="css/pdf_viewer.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="index.html">Homepage ⌂</a></li>
-            <li><a href="#" id="back-button">↩️ Back</a></li>
-            <div class="buttons">
-                <a href="" id="download-button" download>Download PDF</a>
-            </div>
+            <li><a href="hobby.html">Back ←</a></li>
+            <li><a id="download-button" href="" download="">Download ⇣</a></li>
         </ul>
     </nav>
     <div class="pdf-container">
-        <iframe id="pdf-frame" src="" width="60%" height="2000px"></iframe>
+        <iframe id="pdf-frame" src=""></iframe>
     </div>
     
     <script>
@@ -26,6 +23,7 @@
         
         document.getElementById('pdf-frame').src = pdfFile;
         document.getElementById('download-button').href = pdfFile;
+        document.getElementById('download-button').download = pdfFile;
         document.getElementById('back-button').href = document.referrer;
     </script>
 </body>

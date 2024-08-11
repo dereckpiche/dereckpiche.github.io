@@ -3,16 +3,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Georgia", serif;
-    background-color: white;
+    background-color: rgba(256, 256, 256, 0.9); /* Adjust the alpha value for transparency */
 }
 
 body {
-    background-color: rgba(
-        256,
-        256,
-        256,
-        0.9
-    ); /* Adjust the alpha value (0.5) for desired transparency */
     background-blend-mode: overlay;
     display: flex;
     flex-direction: column;
@@ -20,31 +14,24 @@ body {
 }
 
 .header {
-    color: #2e201a;
-    font-size: 1em;
+    color: #18110e;
+    font-size: 1.5em; /* Increased font size for better visibility */
     display: flex;                    /* Enable flexbox */
     justify-content: center;          /* Center items horizontally */
     align-items: center; 
-    padding-top: 3%;
-
+    padding: 1rem 0; /* Adjust padding for better spacing */
 }
 
 .navbar {
-    display: flex;                    /* Enable flexbox */
-    justify-content: center;          /* Center items horizontally */
-    align-items: center;              /* Center items vertically */
-    background: transparent;          /* Use your preferred background */
-    padding-top: 3%;
-    /* background: linear-gradient(180deg, #4a90e2, #1c3d72); */ /* Optional background */
+    border: 0px solid #f7f7f1; 
+    display: flex;                    
+    justify-content: center;          
+    align-items: center;              
+    background: #002c57; /* Gradient background */
+    padding: 1rem 0;                  
 }
 
-
-.brand {
-    font-size: 1.5em;
-    color: white;
-}
-
-.nav-links {
+.nav-links {    
     list-style: none;
     display: flex;
     gap: 20px;
@@ -53,32 +40,40 @@ body {
 }
 
 .nav-links li {
-    display: inline;
+    display: inline-flex; /* Ensure inline flex to align items properly */
+    align-items: center; /* Center items vertically within the list item */
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #5c4033;
+    color: #ffffff;
     padding: 5px 10px;
     border-radius: 5px;
+    line-height: 1.5; /* Ensure consistent line height */
+    display: flex;
+    align-items: center; /* Align items vertically within the link */
+    font-size: 1.2em; /* Adjust font size if needed */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 .nav-links a.active,
 .nav-links a:hover {
-    background-color: #a71f13;
-    color: #f3ece4;
+    background-color: #f9f6e9;
+    color: black;
 }
 
 a {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
     padding: 5px 10px;
     border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 a.active,
 a:hover {
-    color: #5c4033;
+    color: white;
+    background-color: #620101;
 }
 
 #content a {
@@ -86,13 +81,13 @@ a:hover {
 }
 
 #content a:hover {
-    background-color: #a71f13;
-    color: #f3ece4;
+    background-color: #d4af37;
+    color: black;
 }
 
 #content {
     flex-grow: 1;
-    padding: 2rem 20rem 20rem 20rem;
+    padding: 2rem 20rem 20rem 20rem; /* Adjust padding for content area */
 }
 
 section {
@@ -108,9 +103,8 @@ section {
 #blog {
     display: flex;
     flex-direction: column;
-    align-items: left;
-    padding: 2rem 20rem 20rem 20rem;
-
+    align-items: flex-start; /* Align items to the start of the flex container */
+    padding: 2rem 20rem 20rem 20rem; /* Adjust padding for blog section */
 }
 
 .profile-photo {
@@ -133,3 +127,24 @@ section {
 #post-content {
     margin-top: 2rem;
 }
+
+
+.pdf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Allow container to grow to fill available space */
+}
+
+iframe {
+    width: 60vw;
+    height: 85vh; 
+    border: 0px solid #212b01; 
+    border-radius: 0px; 
+    margin: 1rem; 
+    background: #fff; 
+    display: block; 
+}
+
+
+
