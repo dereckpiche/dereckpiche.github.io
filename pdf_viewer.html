@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <link rel="stylesheet" href="css/pdf_viewer.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Homepage ⌂</a></li>
+            <li><a href="#" id="back-button">↩️ Back</a></li>
+            <div class="buttons">
+                <a href="" id="download-button" download>Download PDF</a>
+            </div>
+        </ul>
+    </nav>
+    <div class="pdf-container">
+        <iframe id="pdf-frame" src="" width="60%" height="2000px"></iframe>
+    </div>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pdfFile = urlParams.get('pdf');
+        
+        document.getElementById('pdf-frame').src = pdfFile;
+        document.getElementById('download-button').href = pdfFile;
+        document.getElementById('back-button').href = document.referrer;
+    </script>
+</body>
+</html>

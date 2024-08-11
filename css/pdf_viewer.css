@@ -1,0 +1,76 @@
+body {
+    background-color: rgba(
+        256,
+        256,
+        256,
+        0.9
+    ); /* Adjust the alpha value (0.5) for desired transparency */
+    background-blend-mode: overlay;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.pdf-viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pdf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pdf-controls {
+    margin-bottom: 10px;
+}
+
+.navbar {
+    display: flex;                    /* Enable flexbox */
+    justify-content: center;          /* Center items horizontally */
+    align-items: center;              /* Center items vertically */
+    background: transparent;          /* Use your preferred background */
+    padding-top: 3%;
+    /* background: linear-gradient(180deg, #4a90e2, #1c3d72); */ /* Optional background */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #5c4033;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    background-color: #a71f13;
+    color: #f3ece4;
+}
+
+.control-icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.pdf-frame {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
