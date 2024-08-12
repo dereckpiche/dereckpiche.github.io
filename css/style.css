@@ -146,5 +146,18 @@ iframe {
     display: block; 
 }
 
+.intro {
+    text-align: center;
+    display: block;
+    padding-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
 
-
+.nn {
+    display: block;
+    margin-left: 10%;
+    margin-right: auto;
+    width: 80%;
+}
