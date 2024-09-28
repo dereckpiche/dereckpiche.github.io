@@ -5,11 +5,13 @@ body {
     font-family: Georgia, 'Times New Roman', serif; /* Changed to Georgia with Times New Roman as fallback */
     background-color: #ffffff; /* White background */
     color: #333; /* Dark grey text for good contrast */
+    text-align: center; /* Center all content by default */
 }
 
 body {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Center body content */
     min-height: 100vh;
     font-size: 16px;
     font-weight: normal; /* Explicitly set normal font weight */
@@ -23,6 +25,7 @@ body {
     align-items: center; 
     padding: 1rem;
     font-weight: normal; /* Ensure header is not bold */
+    width: 100%; /* Full width */
 }
 
 .navbar {
@@ -33,6 +36,7 @@ body {
     background: #ffffff; /* White background */
     padding: 0.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    width: 100%; /* Full width */
 }
 
 .nav-links {    
@@ -54,19 +58,36 @@ body {
     text-decoration: none;
     color: #2c3e50; /* Dark blue-grey for nav links */
     padding: 0.5rem 0.75rem;
-    border-radius: 5px;
     line-height: 1.5; /* Ensure consistent line height */
-    display: flex;
-    align-items: center; /* Align items vertically within the link */
-    font-size: 1rem; /* Adjust font size */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+    display: inline-block; /* Changed to inline-block */
+    font-size: 1rem; /* Base font size */
+    position: relative; /* For positioning the pseudo-element */
+    transition: color 0.3s; /* Smooth transition for color change */
     font-weight: normal; /* Ensure nav links are not bold */
 }
 
-.nav-links a.active,
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    bottom: 0;
+    left: 0;
+    background-color: #1a2a3a; /* Color of the underline */
+    transition: width 0.3s ease; /* Smooth transition for width change */
+}
+
 .nav-links a:hover {
-    background-color: #2c3e50; /* Darker blue-grey for active/hover state */
-    color: #ffffff;
+    color: #1a2a3a; /* Slightly darker color on hover */
+    background-color: transparent; /* Ensure no background color change */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* Full width on hover */
+}
+
+.nav-links a.active::after {
+    width: 100%; /* Full width for active link */
 }
 
 a {
@@ -101,25 +122,46 @@ a:hover {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align content to the left */
-    text-align: left; /* Align text to the left within centered container */
+    align-items: center; /* Center content within */
     background-color: #ffffff; /* Same as body background */
     box-shadow: none; /* Remove shadow */
     border-radius: 0; /* Remove rounded corners */
     font-weight: normal; /* Ensure content is not bold */
 }
 
-.profile-photo {
-    max-width: 250px; /* Set a fixed max-width */
-    height: auto;
-    border-radius: 50%; /* Make it circular */
-    margin-bottom: 2rem; /* Add space below the photo */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
+#content p, #content ul, #content ol {
+    text-align: left; /* Left-align paragraphs and lists */
+    width: 100%; /* Full width within content */
 }
 
+.profile-photo {
+    width: 200px; /* Set a fixed width */
+    height: 200px; /* Set the same value as width to create a perfect circle */
+    border-radius: 50%; /* This makes it circular */
+    object-fit: cover; /* This ensures the image fills the circle without distortion */
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%; /* Full width */
+}
 
+.social-icons a {
+    color: #2c3e50;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
 
+.social-icons a:hover {
+    color: #1a2a3a;
+    background-color: transparent;
+}
 
 /* Add media queries for responsive design */
 @media (max-width: 768px) {
