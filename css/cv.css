@@ -1,16 +1,19 @@
 body {
-    font-family: "Georgia", serif;
-
-    background-color: #f4f4f4;
+    font-family: "Times New Roman", Times, serif;
+    background-color: white;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 60%;
-    margin: auto;
-    overflow: hidden;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    padding: 0.5in;
+    box-sizing: border-box;
+    page-break-after: always;
 }
 
 header {
@@ -18,19 +21,26 @@ header {
     margin-bottom: 20px;
 }
 
+.contact-info {
+    font-size: 12pt;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .institution-logo {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
     width: auto;
     height: auto;
-    margin-right: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 .education,
@@ -39,39 +49,73 @@ header {
     margin-bottom: 20px;
 }
 
-h1,
-h2,
-h3 {
-    color: #333;
-}
-
 h1 {
-    margin: 0;
-}
-
-h2 {
+    font-size: 18pt;
     margin: 10px 0;
 }
 
+h2 {
+    font-size: 16pt;
+    margin: 15px 0 10px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
 h3 {
-    margin: 0 0 5px 0;
+    font-size: 14pt;
+    margin: 10px 0 5px;
+}
+
+h4 {
+    font-size: 12pt;
+    margin: 10px 0 5px;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: disc;
+    padding-left: 20px;
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
+    font-size: 14px;
 }
 
 a {
-    color: #3498db;
+    color: #000;
     text-decoration: none;
+}
+
+@media print {
+    @page {
+        size: letter;
+        margin: 0;
+    }
+
+    body {
+        background-color: white;
+    }
+    
+    .container {
+        box-shadow: none;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+
+    .contact-info {
+        position: running(header);
+    }
+
+    @page {
+        @top-center {
+            content: element(header);
+        }
+    }
 }
