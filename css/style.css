@@ -5,7 +5,7 @@ body {
     font-family: Georgia, 'Times New Roman', serif; /* Changed to Georgia with Times New Roman as fallback */
     background-color: #ffffff; /* White background */
     color: #333; /* Dark grey text for good contrast */
-    text-align: center; /* Center all content by default */
+    text-align: left; /* Left-align all content by default */
 }
 
 body {
@@ -26,6 +26,7 @@ body {
     padding: 1rem;
     font-weight: normal; /* Ensure header is not bold */
     width: 100%; /* Full width */
+    text-align: left; /* Left-align header */
 }
 
 .navbar {
@@ -35,7 +36,6 @@ body {
     align-items: center;              
     background: #ffffff; /* White background */
     padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
     width: 100%; /* Full width */
 }
 
@@ -116,22 +116,38 @@ a:hover {
 
 #content {
     flex-grow: 1;
-    padding: 2rem 5%;
-    width: 90%;
+    padding: 3rem 10%;
+    width: 50%;
     max-width: 800px; /* Set a max-width for content readability */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content within */
+    align-items: flex-start; /* Left-align content within */
     background-color: #ffffff; /* Same as body background */
     box-shadow: none; /* Remove shadow */
     border-radius: 0; /* Remove rounded corners */
     font-weight: normal; /* Ensure content is not bold */
+    text-align: left; /* Left-align content */
 }
 
 #content p, #content ul, #content ol {
     text-align: left; /* Left-align paragraphs and lists */
     width: 100%; /* Full width within content */
+}
+
+#about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center profile photo, name, and social icons */
+    width: 100%; /* Ensure it takes full width */
+}
+
+#about-content h1, #about-content .social-icons {
+    text-align: center; /* Center-align name and social icons */
+}
+
+#about-content p {
+    text-align: left; /* Left-align the rest of the text */
 }
 
 .profile-photo {
@@ -190,4 +206,22 @@ a:hover {
         width: 95%;
         padding: 1rem 2.5%;
     }
+}
+
+
+
+.blog-title {
+    color: #2c3e50; /* Link color */
+}
+
+.blog-title:hover {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.blog-content {
+    display: none; /* Hide content by default */
+    padding: 1rem;
+    background-color: #ffffff;
+    text-align: left; /* Left-align blog content */
 }

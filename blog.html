@@ -9,6 +9,9 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
     <nav class="navbar"> 
@@ -17,8 +20,56 @@
         </ul>
     </nav>
     <div id="content">
-        <h1>Writings</h1>
-        <a href="pdfs/A%20Quest%20for%20the%2021st%20Century.pdf">A Quest for the 21st Century</a>
+
+        <h1>Blog</h1>
+
+        <div class="blog-post">
+            <a class="blog-title" href="#">A Quest for the 21st Century <br><b>July 23 2024</b></a>
+            <div class="blog-content">
+Some things are irreducibly complicated to a 
+higher degree than the neocortex can bare. One of these is 
+the own reward system it is trying to please. 
+<br><br>
+Yet, the stubborn among us come up with funny simplifications. 
+For example: to maximize 
+understanding of nature, to maximize one's role in the 
+social hierarchy, to minimize suffering in the world, to 
+minimize entropy (or equivalently to maximize free 
+energy). These evidently do not translate accurately the 
+richness of even a single person's needs, but the pursuit 
+of these simple ideals lead to wonderful adventures 
+which do satisfy their minds. 
+<br><br>
+Throughout history, humans have made catastrophes for populations because 
+1) their motivations were misaligned with said populations
+2) they misunderstood their own likings 
+3) they used a wrong tool or strategy
+As 3) is getting less and less of difficult to solve, 1) and 2) must be adressed.
+We are lucky that the damage that can be caused by a single individual is 
+still this limited. 
+<br><br>
+As other techologies develop, the *intelligence* branch must focus on conservation.
+This branch should not prevent intense experiences and change from our race,
+but it should prevent any deviation which will prevent a return to an anchor.
+We should then aim, as a collective, to 
+maximize human-proximal variance in a sustainable 
+manner.
+            </div>
+        </div>
+
     </div>
+    <script>
+        document.querySelectorAll('.blog-title').forEach(title => {
+            title.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default anchor behavior
+                const content = title.nextElementSibling;
+                if (content.style.display === '' || content.style.display === 'none') {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
