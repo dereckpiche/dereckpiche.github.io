@@ -209,15 +209,14 @@ a:hover {
 }
 
 
-
-.blog-title {
-    color: #2c3e50; /* Link color */
+/* .blog-title {
+    color: #2c3e50; 
 }
 
 .blog-title:hover {
-    cursor: pointer; /* Change cursor to pointer on hover */
-    text-decoration: underline; /* Add underline on hover */
-}
+    cursor: pointer; 
+    text-decoration: underline;]
+} */
 
 .blog-content {
     display: none; /* Hide content by default */
