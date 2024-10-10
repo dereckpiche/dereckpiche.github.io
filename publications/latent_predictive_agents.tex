@@ -8,8 +8,7 @@
 \usepackage{geometry}       % For setting page margins
 \usepackage{enumitem}       % For customized lists
 \usepackage{tikz}           % For drawing with TikZ
-\usepackage{algorithm}
-\usepackage{algorithmic}
+\usepackage[ruled]{algorithm2e}
 
 % Page setup
 \geometry{margin=1in}
@@ -28,12 +27,10 @@
 
 \section{Introduction}
 
-
-Given $Q : s, a \to r$, a good action $\hat{a}$ can be found by applying gradient ascent.
+Given a stat $s_t$, a good action $\hat{a}$ can be found by applying Gradient Ascent on $Q(a_t, s_t)$. 
 Unfortunately, $Q$ has proven to be impossible to learn with naive methods in complex environments.
 A function $Q'$ which approximates $Q$ well implicitely predicts some aspects of the future states.
 This paper proposes a method to make this predictive modelling both explicit and efficient.
-As such, the methods introduced can be considered as part of predictive-Q-learning.
 \\ \\
 Predicting the state transitions directly is too difficult. 
 An assumption should be made that it is only a small subset of the features of the states which the agent needs to predict in order to model $Q$ accurately. 
@@ -42,16 +39,16 @@ In other words, an assumption should be made that useful patterns are easier to 
 \\  \\
 As a concrete illustration, picture a series of photos of pedestrians crossing the street at traffic lights. If one seeks patterns in an abstract representation space (for example, in textual descriptions), it will be evident that pedestrians crossing the street are usually preceded by the pedestrian "Walk" symbol turning on. But in the space of pixels, because of the variance and the higher number of dimensions, countless patterns with equal data support can be found. Therefore, the amount of data necessary to constrict the set of patterns such that the aforementionned one takes precedence is an efficiency bottleneck.
 
-
+\newpage
 \section{Methods}
 
 \subsection{Latent Space Mapping}
 
 
-The first objective is to train a function $f_{\text{enc}}$ which extracts the relevant features of the observation space $\mathbb{O}$ by mapping it to a latent space $\mathbb{Z}$. Therein lies the difficulty: which futures are useful?
-We assume that usefull features help predict, from observation $o$ and action $a$, the expected return $Q(a, s)$, some grounding vector $G(s)$ and, most importantly, the mapping of future observations to $\mathbb{Z}$. We also add the requirement that $a_t$ can be infered from $z_t$, for reasons which will be made clear in following paragraphs.
+The first objective is to train a function $\eta_{\text{enc}}$ which extracts the relevant features of the observation space $\mathbb{O}$ by mapping it to a latent space $\mathbb{Z}$. Therein lies the difficulty: which futures are useful?
+We assume that usefull features help predict, from observation $o$ and action $a$, the expected return $Q(a, s)$, some grounding vector $G(s)$ and, most importantly, the mapping of future observations to $\mathbb{Z}$. We also add the requirement that $a_t$ can be infered from $z_t$, for reasons which will be made clear in following paragraphs. The objective here is to create a bootstrapping process where each feature added to $z$ adds difficulty in accurately predicting $\hat{z}_{t \boldsymbol{+}1}$, leading to more features being added. The other constraints ensures that the inital features learned are useful for the agent and help with selecting actions.
 \\ \\ 
-We therefore define the model $f$ as the set of functions $\{f_{enc}, f_{\text{gdn}}, f_{act}, f_{Q}, f_{pred}\}$ such that $z_t = f_{enc}(z_{[0:t-1]}, o_t, a_t$, $z_{[0:t-1]})$, $\hat{g}_t = f_{\text{gdn}}(z_{[0:t]})$, $\hat{a}_t = f_{\text{act}}(z_{[0:t]})$, $\hat{q}_t = f_{\text{Q}}(z_{[0:t]})$, and $\hat{z}_{t \boldsymbol{+}1} = f_{\text{pred}}(z_{[0:t]})$. The objective here is to create a bootstrapping process where each feature added to $z$ adds difficulty in accurately predicting $\hat{z}_{t \boldsymbol{+}1}$, leading to more features being added. The other constraints ensures that the inital features learned are useful for the agent and help with selecting actions.
+We therefore define the model $\eta$ as the set of functions $\{\eta_{enc}, \eta_{\text{gdn}}, \eta_{act}, \eta_{Q}, \eta_{pred}\}$ such that $z_t = \eta_{enc}(z_{[0:t-1]}, o_t, a_t$, $z_{[0:t-1]})$, $\hat{g}_t = \eta_{\text{gdn}}(z_{[0:t]})$, $\hat{a}_t = \eta_{\text{act}}(z_{[0:t]})$, $\hat{q}_t = \eta_{\text{Q}}(z_{[0:t]})$, and $\hat{z}_{t \boldsymbol{+}1} = \eta_{\text{pred}}(z_{[0:t]})$. 
 
 
 
@@ -64,14 +61,14 @@ Suppose that $f$ was well trained, then it should be expected that
 \frac{\partial}{\partial a_t}Q(a_t, s_t)
 \approx
 \frac{\partial}{\partial a_t} \left[ 
-	\gamma^{k}f_{Q}(\hat{z}_{[0:t+k]}) + \sum_{i=0}^{k-2} \gamma^{i}\left[f_{Q}(\hat{z}_{[0:t+i]}) -f_{Q}(\hat{z}_{[0:t+i+1]})\right]
+	\gamma^{k}\eta_{Q}(\hat{z}_{[0:t+k]}) + \sum_{i=0}^{k-2} \gamma^{i}\left[\eta_{Q}(\hat{z}_{[0:t+i]}) -\eta_{Q}(\hat{z}_{[0:t+i+1]})\right]
 \right]
 \end{align}
 
 
 where 
 $
-\hat{z}_{t+i} \triangleq f^{[[i]] }_{\text{pred}}(z_{[0:t-1]}, f_{\text{enc}}(z_{[0:t-1]}, o_t, a_t)) 
+\hat{z}_{t+i} \triangleq f^{[[i]] }_{\text{pred}}(z_{[0:t-1]}, \eta_{\text{enc}}(z_{[0:t-1]}, o_t, a_t)) 
 $
 and
 $
@@ -92,7 +89,81 @@ During the simulation of trajectories, one can store $\{o, a, z, g, r\}$ sets. W
 \triangleq
 \frac{d}{d \theta}  || V \odot (y(x) - \hat{y} )||^2_2
 \end{align} 
-where $V$ is a hyperparameter, $x := \left<o_t, a_t\right>$, $y := \left<g_t, a_t, q_t, z_{t+1}\right>$,  $z_t := f_{\text{enc}}(z_{[0:t-1]}, o_t, a_t ; \theta)$ and $$\hat{y} := \left<f_{\text{gnd}}(z_{[0:t]} ; \theta), f_{\text{act}}(z_{[0:t]} ; \theta), f_{\text{Q}}(z_{[0:t]} ; \theta), f_{\text{pred}}(z_{[0:t]};\theta), \right>$$
+where $V$ is a hyperparameter, $x := \left<o_t, a_t\right>$, $y := \left<g_t, a_t, q_t, z_{t+1}\right>$,  $z_t := \eta_{\text{enc}}(z_{[0:t-1]}, o_t, a_t ; \theta)$ and $$\hat{y} := \left<\eta_{\text{gnd}}(z_{[0:t]} ; \theta), \eta_{\text{act}}(z_{[0:t]} ; \theta), \eta_{\text{Q}}(z_{[0:t]} ; \theta), \eta_{\text{pred}}(z_{[0:t]};\theta), \right>$$
 However, there are countless losses than one can try. This is left to future work. 
+\newpage
+\subsection{Algorithmic Description of Method}
+\begin{algorithm}[H]
+\caption{Latent Predictive Modelling}
+\For{episode}{
+	Buffer $ \leftarrow \{\}$\\
+	\For{trajectory}{
+		Add GenerateTrajectory(env, $\eta^\theta$) to $D_{\text{buffer}}$ \\
+	}
+	$\theta \leftarrow \text{GradientStep}(\text{LatentLoss}(\text{Buffer}, \eta^\theta), \theta)$
+	
+}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{$\eta(o_t, a_t, z_{[0:t-1]})$}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+$z_t \leftarrow \eta^\theta_{enc}(z_{[0:t-1]}, o_t, a_t)$ \\
+$\hat{g}_t \leftarrow \eta^\theta_{\text{gdn}}(z_{[0:t]})$\\
+$\hat{a}_t \leftarrow \eta^\theta_{\text{act}}(z_{[0:t]})$, $\hat{q}_t = \eta_{\text{Q}}(z_{[0:t]})$\\
+$\hat{z}_{t \boldsymbol{+}1} \leftarrow \eta^\theta_{\text{pred}}(z_{[0:t]})$\\
+\Output{
+$\left(z_t, \hat{g}_t, \hat{a}_t, \hat{q}_t, \hat{z}_{t+1} \right)$
+}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{GenerateTrajectory(env, $\eta^\theta$)}
+
+$\tau \leftarrow []$\\
+\While{$s_t$ not terminal}{
+$a_t \gets \text{GradientDescent}( -\text{ApproximateQ}(\eta^\theta, z_{[0:t]}, k), a_t)$\\
+$s_t \leftarrow \text{env}_f(a_t, s_t)$; \
+$r_t \leftarrow \text{env}_r(a_t, s_t)$; \
+$o_t \leftarrow \text{env}_o(s_t)$; 
+$g_t \gets G(s_t)$; \\
+$\left(z_t, \ \dots \right) \gets \eta(o_t, a_t, z)$,  \\
+$z \gets [z, z_t]$ \\
+Add $(o_t, a_t, r_t, g_t, z_t)$ 
+to $\tau$
+}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{LatentLoss($\dots$)}
+$L = 0$ \\
+\For{trajectory $\tau$ in \text{Buffer}}{
+	Switch $r_t$'s for $q_t$ in $\tau$ \\
+	Switch $z_t$'s for $z_{t+1}$'s $\tau$ \\
+	
+	\For{$(o_t, a_t, q_t, g_t, z_{t+1})$ in $\tau$}{
+		$y \gets (o_t, a_t, q_t, g_t, z_{t+1})$ \\
+		$\hat{y} \gets \eta^{\theta}(o_t, a_t, z)$ \\
+		$l \gets || V \odot (y - \hat{y} )||^2_2$ \\
+		$L \gets L + l$\\
+	}
+}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Approximate$Q(\eta, z, k)$}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{$\eta$}
+$\hat{q}_t \gets 0$ \\
+\For{$i$ in $[0, \dots, k]$}{
+	$\hat{z}_{t+i} \leftarrow \eta_{\text{pred}}(z_{[0:t+i-1]})$ \\
+	$\hat{r}_{t+i} \leftarrow \eta_{Q}(\hat{z}_{t+i}) - \eta_{Q}(\hat{z}_{t+i-1})$ \\
+	$\hat{q}_t \leftarrow \hat{q}_t +\hat{r}_{t+i} $ \\
+}
+
+\end{algorithm}
 
 \end{document}
