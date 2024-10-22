@@ -1,8 +1,8 @@
 \documentclass[11pt]{article}
+\usepackage{amsmath}
 \title{Invertible Q-Functions}
 \author{Dereck Piche}
 \date{August 8 2024}
-
 
 
 \begin{document}
@@ -23,10 +23,6 @@ If $Q_\theta$ parameterizes a distribution we can gradient descent to lower the 
 Another way is to have $Q_\theta$ map $S, A$ to $T, C$ where $c \in C$ measures confidence. The training algorithm would lower the divergence penalty if the confidence is low. 
 
 Then with high $h \in H$ and $c \in C$ the inversion will give a likelier good $a \in A$. 
-
-
-
-
 
 
 \end{document}

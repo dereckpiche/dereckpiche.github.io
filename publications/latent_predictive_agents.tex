@@ -24,20 +24,19 @@
 \maketitle
 
 
-
 \section{Introduction}
 
 Given a stat $s_t$, a good action $\hat{a}$ can be found by applying Gradient Ascent on $Q(a_t, s_t)$. 
-Unfortunately, $Q$ has proven to be impossible to learn with naive methods in complex environments.
+However, $Q$ is not learnabl with naive methods in complex environments.
 A function $Q'$ which approximates $Q$ well implicitely predicts some aspects of the future states.
 This paper proposes a method to make this predictive modelling both explicit and efficient.
 \\ \\
-Predicting the state transitions directly is too difficult. 
+The full modelling of the transition function of complex environements from sequences of state is intractable. 
 An assumption should be made that it is only a small subset of the features of the states which the agent needs to predict in order to model $Q$ accurately. 
 Then if an encoder mapped the observations to a latent space $\mathbb{Z}$, it would not be intractable to model the transitions of the states \textit{projected in the latent space}. 
 In other words, an assumption should be made that useful patterns are easier to notice when they are searched in the transitions of important learned features.
 \\  \\
-As a concrete illustration, picture a series of photos of pedestrians crossing the street at traffic lights. If one seeks patterns in an abstract representation space (for example, in textual descriptions), it will be evident that pedestrians crossing the street are usually preceded by the pedestrian "Walk" symbol turning on. But in the space of pixels, because of the variance and the higher number of dimensions, countless patterns with equal data support can be found. Therefore, the amount of data necessary to constrict the set of patterns such that the aforementionned one takes precedence is an efficiency bottleneck.
+As a concrete illustration, picture a series of photos of pedestrians crossing the street at traffic lights. If one seeks patterns in an abstract representation space (for example, in textual descriptions), it will be evident that pedestrians crossing the street are usually preceded by the pedestrian ``Walk'' symbol turning on. But in the space of pixels, because of the variance and the higher number of dimensions, countless patterns with equal data support can be found. Therefore, the amount of data necessary to constrict the set of patterns such that the aforementionned one takes precedence is an efficiency bottleneck.
 
 \newpage
 \section{Methods}
@@ -45,8 +44,8 @@ As a concrete illustration, picture a series of photos of pedestrians crossing t
 \subsection{Latent Space Mapping}
 
 
-The first objective is to train a function $\eta_{\text{enc}}$ which extracts the relevant features of the observation space $\mathbb{O}$ by mapping it to a latent space $\mathbb{Z}$. Therein lies the difficulty: which futures are useful?
-We assume that usefull features help predict, from observation $o$ and action $a$, the expected return $Q(a, s)$, some grounding vector $G(s)$ and, most importantly, the mapping of future observations to $\mathbb{Z}$. We also add the requirement that $a_t$ can be infered from $z_t$, for reasons which will be made clear in following paragraphs. The objective here is to create a bootstrapping process where each feature added to $z$ adds difficulty in accurately predicting $\hat{z}_{t \boldsymbol{+}1}$, leading to more features being added. The other constraints ensures that the inital features learned are useful for the agent and help with selecting actions.
+The first objective is to train a function $\eta_{\text{enc}}$ which extracts the relevant features of the observation space $\mathbb{O}$ by mapping it to a latent space $\mathbb{Z}$. Therein lies the difficulty: how to identify which features are useful?
+It can be assumed that usefull features are those who help predict, from observation $o$ and action $a$, the expected return $Q(a, s)$, some grounding vector $G(s)$ and, most importantly, the mapping of future observations to $\mathbb{Z}$. We also add the requirement that $a_t$ can be infered from $z_t$, for reasons which will be made clear in following paragraphs. In part, the objective is to create a bootstrapping process where each new feature detector added to the $\eta_\text{enc}^\theta$ function by changes in parameters $\theta$ adds difficulty in accurately predicting $z_{t \boldsymbol{+}1}$ from $z_t$, leading to more features being added. The other constraints ensures that the inital features learned are useful for the agent and help with selecting actions.
 \\ \\ 
 We therefore define the model $\eta$ as the set of functions $\{\eta_{enc}, \eta_{\text{gdn}}, \eta_{act}, \eta_{Q}, \eta_{pred}\}$ such that $z_t = \eta_{enc}(z_{[0:t-1]}, o_t, a_t$, $z_{[0:t-1]})$, $\hat{g}_t = \eta_{\text{gdn}}(z_{[0:t]})$, $\hat{a}_t = \eta_{\text{act}}(z_{[0:t]})$, $\hat{q}_t = \eta_{\text{Q}}(z_{[0:t]})$, and $\hat{z}_{t \boldsymbol{+}1} = \eta_{\text{pred}}(z_{[0:t]})$. 
 
@@ -98,7 +97,7 @@ However, there are countless losses than one can try. This is left to future wor
 \For{episode}{
 	Buffer $ \leftarrow \{\}$\\
 	\For{trajectory}{
-		Add GenerateTrajectory(env, $\eta^\theta$) to $D_{\text{buffer}}$ \\
+		Add GenerateTrajectory(env, $\eta^\theta$) to ${\text{Buffer}}$ \\
 	}
 	$\theta \leftarrow \text{GradientStep}(\text{LatentLoss}(\text{Buffer}, \eta^\theta), \theta)$
 	
@@ -106,7 +105,7 @@ However, there are countless losses than one can try. This is left to future wor
 \end{algorithm}
 
 \begin{algorithm}[H]
-\caption{$\eta(o_t, a_t, z_{[0:t-1]})$}
+\caption{$\eta^\theta(o_t, a_t, z_{[0:t-1]})$}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 $z_t \leftarrow \eta^\theta_{enc}(z_{[0:t-1]}, o_t, a_t)$ \\
@@ -120,7 +119,11 @@ $\left(z_t, \hat{g}_t, \hat{a}_t, \hat{q}_t, \hat{z}_{t+1} \right)$
 
 \begin{algorithm}[H]
 \caption{GenerateTrajectory(env, $\eta^\theta$)}
-
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{
+	$\text{env}$, $\eta^{\theta}$
+}
 $\tau \leftarrow []$\\
 \While{$s_t$ not terminal}{
 $a_t \gets \text{GradientDescent}( -\text{ApproximateQ}(\eta^\theta, z_{[0:t]}, k), a_t)$\\
@@ -128,42 +131,57 @@ $s_t \leftarrow \text{env}_f(a_t, s_t)$; \
 $r_t \leftarrow \text{env}_r(a_t, s_t)$; \
 $o_t \leftarrow \text{env}_o(s_t)$; 
 $g_t \gets G(s_t)$; \\
-$\left(z_t, \ \dots \right) \gets \eta(o_t, a_t, z)$,  \\
-$z \gets [z, z_t]$ \\
+$\left(z_t, \ \dots \right) \gets \eta^\theta(o_t, a_t, z)$,  \\
 Add $(o_t, a_t, r_t, g_t, z_t)$ 
 to $\tau$
+}
+\Output{
+$\tau$
 }
 \end{algorithm}
 
 \begin{algorithm}[H]
-\caption{LatentLoss($\dots$)}
+\caption{LatentLoss(Buffer, $\eta^\theta$)}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{
+	Buffer, $\eta^\theta$
+}
 $L = 0$ \\
 \For{trajectory $\tau$ in \text{Buffer}}{
 	Switch $r_t$'s for $q_t$ in $\tau$ \\
 	Switch $z_t$'s for $z_{t+1}$'s $\tau$ \\
 	
-	\For{$(o_t, a_t, q_t, g_t, z_{t+1})$ in $\tau$}{
+	\For{$(o_t, a_t, q_t, g_t, z_{t+1})$ in $\tau$ except $\tau_T$}{
 		$y \gets (o_t, a_t, q_t, g_t, z_{t+1})$ \\
 		$\hat{y} \gets \eta^{\theta}(o_t, a_t, z)$ \\
 		$l \gets || V \odot (y - \hat{y} )||^2_2$ \\
-		$L \gets L + l$\\
+		Add $l$ to $L$\\
 	}
 }
-
+\Output{
+	L
+}
 \end{algorithm}
 
 \begin{algorithm}[H]
-\caption{Approximate$Q(\eta, z, k)$}
+\caption{Approximate$Q(\eta^\theta, z, k)$}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
-\Input{$\eta$}
+\Input{$\eta^\theta$, $z$, $k$}
 $\hat{q}_t \gets 0$ \\
 \For{$i$ in $[0, \dots, k]$}{
-	$\hat{z}_{t+i} \leftarrow \eta_{\text{pred}}(z_{[0:t+i-1]})$ \\
-	$\hat{r}_{t+i} \leftarrow \eta_{Q}(\hat{z}_{t+i}) - \eta_{Q}(\hat{z}_{t+i-1})$ \\
+	$\hat{z}_{t+i} \leftarrow \eta^\theta_{\text{pred}}(z_{[0:t+i-1]})$ \\
+	$\hat{r}_{t+i} \leftarrow \eta^\theta_{Q}(\hat{z}_{t+i}) - \eta^\theta_{Q}(\hat{z}_{t+i-1})$ \\
 	$\hat{q}_t \leftarrow \hat{q}_t +\hat{r}_{t+i} $ \\
 }
-
+\Output{$\hat{q}_t$}
 \end{algorithm}
+
+\section{Results}
+\section{Discussion}
+\section{Conclusion}
+
+
 
 \end{document}
