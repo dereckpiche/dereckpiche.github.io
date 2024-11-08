@@ -15,6 +15,7 @@ body {
     min-height: 100vh;
     font-size: 16px;
     font-weight: normal; /* Explicitly set normal font weight */
+    padding-bottom: 2000px;
 }
 
 .header {
@@ -91,7 +92,7 @@ body {
 }
 
 a {
-    color: #2c3e50; /* Consistent color for links */
+    /* color: #2c3e50; Consistent color for links */
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
@@ -224,3 +225,59 @@ a:hover {
     background-color: #ffffff;
     text-align: left; /* Left-align blog content */
 }
+
+.dropdown-content {
+    display: none; /* Ensure dropdowns are closed by default */
+    margin-left: 1.5rem; /* Add a slightly larger left margin using rem */
+}
+
+.dropdown-trigger {
+    cursor: pointer; /* Change cursor to hand on hover */
+}
+
+button:hover {
+    cursor: pointer; /* Change cursor to hand on hover */
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+  }
+  
+  button.dropdown-button {
+    background: none;
+    border: none;
+    /* color: #2c3e50; */
+    font-size: inherit; /* Inherit font size from the parent heading */
+    font-weight: inherit; /* Inherit font weight from the parent heading */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+  }
+  
+  button.dropdown-button::after {
+    content: '';
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg); /* Right arrow by default */
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+  }
+  
+  button.dropdown-button.active::after {
+    transform: rotate(45deg); /* Down arrow when active */
+  } 

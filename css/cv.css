@@ -7,6 +7,26 @@ body {
     padding: 0;
 }
 
+.dropdown-content {
+    display: none; /* Hidden by default */
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.dropdown-button {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.dropdown-button:hover {
+    background-color: #0056b3;
+}
+
 .container {
     width: 8.5in;
     height: 11in;
