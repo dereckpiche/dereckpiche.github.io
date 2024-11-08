@@ -170,13 +170,13 @@ a:hover {
 }
 
 .social-icons a {
-    color: #2c3e50;
+    color: #030303;
     font-size: 24px;
     transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-    color: #1a2a3a;
+    color: #2c3e50;
     background-color: transparent;
 }
 
