@@ -195,7 +195,7 @@ a:hover {
         margin-bottom: 0.5rem;
     }
 
-    #content, #blog {
+    #content, #essays {
         padding: 1rem 5%;
     }
 
@@ -210,20 +210,20 @@ a:hover {
 }
 
 
-/* .blog-title {
+/* .essays-title {
     color: #2c3e50; 
 }
 
-.blog-title:hover {
+.essays-title:hover {
     cursor: pointer; 
     text-decoration: underline;]
 } */
 
-.blog-content {
+.essays-content {
     display: none; /* Hide content by default */
     padding: 1rem;
     background-color: #ffffff;
-    text-align: left; /* Left-align blog content */
+    text-align: left; /* Left-align essays content */
 }
 
 .dropdown-content {
