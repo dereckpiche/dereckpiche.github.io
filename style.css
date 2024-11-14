@@ -1,1 +1,10 @@
- 
+a {
+    color: #000000; /* Black color for links */
+    text-decoration: underline; /* Underline to indicate it's a link */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+a:hover {
+    color: #666666; /* Gray color on hover */
+    background-color: transparent; /* Ensure no background color change */
+} 
