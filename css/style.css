@@ -33,7 +33,6 @@ body {
 a {
     color: #000000; /* Black color for links */
     text-decoration: underline; /* Underline to indicate it's a link */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 a:hover {
