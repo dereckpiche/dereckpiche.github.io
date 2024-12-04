@@ -1,277 +1,35 @@
 html,
 body {
-    margin: 0;
+    margin: auto;
+    margin-top: 5em;
     padding: 0;
-    font-family: Georgia, 'Times New Roman', serif; /* Changed to Georgia with Times New Roman as fallback */
-    background-color: #ffffff; /* White background */
-    color: #333; /* Dark grey text for good contrast */
-    text-align: left; /* Left-align all content by default */
+    width: 80%;
+    font-family: Georgia; 
+    color: black; 
+    text-align: left;
+    font-style: white;
+    background: #f7efda;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center body content */
-    min-height: 100vh;
-    font-size: 16px;
-    font-weight: normal; /* Explicitly set normal font weight */
-    padding-bottom: 2000px;
-}
-
-.header {
-    color: #2c3e50; /* Dark blue-grey for header */
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    padding: 1rem;
-    font-weight: normal; /* Ensure header is not bold */
-    width: 100%; /* Full width */
-    text-align: left; /* Left-align header */
-}
 
 a {
-    color: #000000; /* Black color for links */
-    text-decoration: underline; /* Underline to indicate it's a link */
+    color: #852901; 
+    text-decoration: none;
+    font-family: sans-serif; 
+}
+
+a:visited {
+    color: #852901; 
 }
 
 a:hover {
-    color: #666666; /* Gray color on hover */
-    background-color: transparent; /* Ensure no background color change */
-} 
-
-.navbar {
-    margin-top: 20px; /* Add margin from the top */
-    background-color: #f8f9fa; /* Light grey background */
-    padding: 10px 20px; /* Padding around the navbar */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */ /* Remove shadow */
-    display: flex;                    
-    justify-content: center;          
-    align-items: center;              
-    background: #ffffff; /* White background */
-    padding: 0.5rem;
-    width: 100%; /* Full width */
-}
-
-.nav-links {    
-    list-style-type: none; /* Remove bullet points */
-    padding: 0;
-    margin: 0;
-    display: flex; /* Display links in a row */
-    justify-content: center; /* Center the links */
-}
-
-.nav-links li {
-    margin: 0 15px; /* Space between links */
+    color: #7caef7; 
+    text-decoration: none;
 }
 
 
-.nav-links a {
-    text-decoration: none; /* Remove underline */
-    color: #000000; /* Blue color for links */
-    font-weight: bold; /* Bold text */
-    transition: color 0s; /* Smooth transition for hover effect */
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px; /* Thickness of the underline */
-    bottom: 0;
-    left: 0;
-    background-color: #1a2a3a; /* Color of the underline */
-    transition: width 0.1s ease; /* Smooth transition for width change */
-}
-
-.nav-links a:hover {
-    color: #666666; /* Darker blue on hover */
-    background-color: transparent; /* Ensure no background color change */
-}
-
-.nav-links a:hover::after {
-    width: 100%; /* Full width on hover */
-}
-
-.nav-links a.active::after {
-    width: 100%; /* Full width for active link */
-}
-
-#content {
-    flex-grow: 1;
-    padding: 3rem 10%;
-    width: 50%;
-    max-width: 800px; /* Set a max-width for content readability */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Left-align content within */
-    background-color: #ffffff; /* Same as body background */
-    box-shadow: none; /* Remove shadow */
-    border-radius: 0; /* Remove rounded corners */
-    font-weight: normal; /* Ensure content is not bold */
-    text-align: left; /* Left-align content */
-}
-
-#content p, #content ul, #content ol {
-    text-align: left; /* Left-align paragraphs and lists */
-    width: 100%; /* Full width within content */
-}
-
-#about-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center profile photo, name, and social icons */
-    width: 100%; /* Ensure it takes full width */
-}
-
-#about-content h1, #about-content .social-icons {
-    text-align: center; /* Center-align name and social icons */
-}
-
-#about-content p {
-    text-align: left; /* Left-align the rest of the text */
-}
-
-.profile-photo {
-    width: 200px; /* Set a fixed width */
-    height: 200px; /* Set the same value as width to create a perfect circle */
-    border-radius: 50%; /* This makes it circular */
-    object-fit: cover; /* This ensures the image fills the circle without distortion */
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.social-icons-container {
-    position: absolute; /* Position it absolutely */
-    top: 10px; /* Add margin from the top */
-    left: 10px; /* Add margin from the left */
-    margin: 10px; /* Add some margin for spacing */
-    display: flex;
-    /* Removed other styles that were centering it */
-}
-
-.social-icons {
-    display: flex;
-    gap: 5px; /* Minimal space between each icon */
-}
-
-.social-icons a {
-    color: #000000; /* Black color for icons */
-    font-size: 16px; /* Smaller font size for icons */
-    width: 20px; /* Smaller width */
-    height: 20px; /* Smaller height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%; /* Circular shape */
-    background-color: #f0f0f0; /* Light gray background */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-}
-
-.social-icons a:hover {
-    background-color: #b0b0b0; /* Slight pale gray on hover */
-    color: #ffffff; /* White color on hover */
-}
-
-/* Add media queries for responsive design */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Slightly smaller base font size for mobile */
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .nav-links li {
-        margin-bottom: 0.5rem;
-    }
-
-    #content, #essays {
-        padding: 1rem 5%;
-    }
-
-    iframe {
-        height: 50vh; /* Smaller height for mobile */
-    }
-
-    #content {
-        width: 95%;
-        padding: 1rem 2.5%;
-    }
-}
 
 
-/* .essays-title {
-    color: #2c3e50; 
-}
 
-.essays-title:hover {
-    cursor: pointer; 
-    text-decoration: underline;]
-} */
 
-.essays-content {
-    display: none; /* Hide content by default */
-    padding: 1rem;
-    background-color: #ffffff;
-    text-align: left; /* Left-align essays content */
-}
 
-.dropdown-content {
-    display: none; /* Ensure dropdowns are closed by default */
-    margin-left: 1.5rem; /* Add a slightly larger left margin using rem */
-}
-
-.dropdown-trigger {
-    cursor: pointer; /* Change cursor to hand on hover */
-}
-
-button:hover {
-    cursor: pointer; /* Change cursor to hand on hover */
-}
-
-.arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transition: transform 0.001s; /* Smooth transition for rotation */
-  }
-  
-  .right {
-    transform: rotate(-45deg);
-  }
-  
-  .down {
-    transform: rotate(45deg);
-  }
-  
-  button.dropdown-button {
-    background: none;
-    border: none;
-    /* color: #2c3e50; */
-    font-size: inherit; /* Inherit font size from the parent heading */
-    font-weight: inherit; /* Inherit font weight from the parent heading */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
-  }
-  
-  button.dropdown-button::after {
-    content: '';
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(-45deg); /* Right arrow by default */
-    transition: transform 0.01s ease; /* Smooth transition for rotation */
-  }
-  
-  button.dropdown-button.active::after {
-    transform: rotate(45deg); /* Down arrow when active */
-  } 
