@@ -1,7 +1,7 @@
 html,
 body {
     margin: auto;
-    margin-top: 5em;
+    margin-top: 3em;
     padding: 0;
     width: 80%;
     font-family: Georgia; 
@@ -15,7 +15,6 @@ body {
 a {
     color: #852901; 
     text-decoration: none;
-    font-family: sans-serif; 
 }
 
 a:visited {
