@@ -13,12 +13,14 @@ body {
 
 
 a {
-    color: #852901; 
+    color: #014514; 
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:visited {
-    color: #852901; 
+    color: #014514; 
+    font-weight: bold;
 }
 
 a:hover {
