@@ -3,25 +3,23 @@ body {
     margin: auto;
     margin-top: 3em;
     padding: 0;
-    width: 80%;
+    width: 90%;
     font-family: Georgia; 
-    color: black; 
+    color: white; 
     text-align: left;
     font-style: white;
-    background: white;
+    background: #00170a;
 }
 
 
 a {
-    color: #014514; 
-    text-decoration: none;
-    font-weight: bold;
+    color: #dff0f5; 
+    text-decoration: underline;
 }
 
 a:visited {
-    color: #014514; 
-    font-weight: bold;
-}
+    color: #dff0f5; 
+    }
 
 a:hover {
     color: #EB6D0F; 
