@@ -13,12 +13,12 @@ body {
 
 
 a {
-    color: #dff0f5; 
-    text-decoration: underline;
+    color: #f5a87f; 
+    text-decoration: none;
 }
 
 a:visited {
-    color: #dff0f5; 
+    color: #f5a87f; 
     }
 
 a:hover {
