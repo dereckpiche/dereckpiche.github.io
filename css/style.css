@@ -5,20 +5,20 @@ body {
     padding: 0;
     width: 85%;
     font-family: Georgia; 
-    color: white; 
+    color: black; 
     text-align: left;
     font-style: white;
-    background: #00170a;
+    background: white;
 }
 
 
 a {
-    color: #eef7cd; 
+    color: blue;
     text-decoration: none;
 }
 
 a:visited {
-    color: #eef7cd; 
+    color: blue;
     }
 
 a:hover {
