@@ -1,34 +1,132 @@
 html,
 body {
-    margin: auto;
-    margin-top: 3em;
-    padding: 0;
-    width: 85%;
-    font-family: Georgia; 
-    color: black; 
+    margin: 0;
+    padding: 0 1.5em;
+    width: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f9;
+    line-height: 1.6;
     text-align: left;
-    font-style: white;
-    background: white;
+    box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #222;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+h3 {
+    color: #222;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    font-size: 1.5em;
+}
 
 a {
-    color: blue;
+    color: #007BFF;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
-
-a:visited {
-    color: blue;
-    }
 
 a:hover {
-    color: #EB6D0F; 
-    text-decoration: none;
+    color: #0056b3;
 }
 
+a h3 {
+    color: inherit;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    font-size: 1.5em;
+    display: block;
+}
 
+a h3:hover {
+    color: inherit;
+}
 
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+button:hover {
+    background-color: #0056b3;
+}
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
+@media (max-width: 768px) {
+    .container {
+        padding: 1em;
+    }
+}
 
+.navbar {
+    margin-top: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: none;
+    background-color: #f4f4f9;
+    padding: 0.5em 0;
+}
+
+.navbar a {
+    font-family: Georgia;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    display: inline-block;
+}
+
+.navbar a:hover {
+    color: #007BFF;
+    background-color: transparent;
+}
+
+#chain {
+    color: blue;
+    position: absolute;
+    top: 5em;
+    right: 15%;
+    font-size: 1.2em;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 30%;
+    object-fit: cover;
+    border: 1px white;
+    border-style: solid;
+    margin-top: 1em;
+}
