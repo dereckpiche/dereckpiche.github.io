@@ -1,88 +1,20 @@
-html,
 body {
-    margin: 0;
-    padding: 0 5em;
-    width: 100%;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
-    background-color: #f4f4f9;
+    margin: 1.5rem;
+    font-family: serif;
     line-height: 1.6;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #222;
-    margin-bottom: 0.5em;
-    font-weight: 600;
-}
-
-p {
-    margin-bottom: 1em;
-}
-
-h3 {
-    color: #222;
-    margin-bottom: 0.5em;
-    font-weight: 600;
-    font-size: 1.5em;
+    color: #000;
+    background: #fff;
 }
 
 a {
-    color: #007BFF;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0056b3;
-}
-
-a h3 {
-    color: inherit;
-    margin-bottom: 0.5em;
-    font-weight: 600;
-    font-size: 1.5em;
-    display: block;
-}
-
-a h3:hover {
-    color: inherit;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
+    color: #00f;
 }
 
 img {
     max-width: 100%;
     height: auto;
-    display: block;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 1em;
-    }
+h1, h2, h3 {
+    margin: 1rem 0 0.5rem;
 }

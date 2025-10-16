@@ -8,7 +8,7 @@ body {
 }
 
 .dropdown-content {
-    display: none; /* Hidden by default */
+    display: none;
     padding: 10px;
     border: 1px solid #ccc;
     margin-top: 5px;
@@ -29,10 +29,12 @@ body {
 
 .container {
     width: 8.5in;
-    height: 11in;
-    margin: 0 auto;
+    min-height: 11in;
+    margin: 1rem auto;
     padding: 0.5in;
     box-sizing: border-box;
+    border: 1px solid #ccc; /* show page boundary on screen */
+    background: white;
     page-break-after: always;
 }
 
@@ -111,6 +113,12 @@ a {
     text-decoration: none;
 }
 
+.no-print {
+    text-align: right;
+    width: 8.5in;
+    margin: 1rem auto 0;
+}
+
 @media print {
     @page {
         size: letter;
@@ -122,7 +130,9 @@ a {
     }
     
     .container {
+        border: none;
         box-shadow: none;
+        margin: 0 auto;
     }
     
     a {
@@ -138,4 +148,7 @@ a {
             content: element(header);
         }
     }
+
+    .no-print { display: none; }
 }
+
