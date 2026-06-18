@@ -78,35 +78,36 @@ ul li {
 }
 
 .album {
-    border: 1px solid #2e1c12;
-    border-radius: 6px;
-    padding: 1.25rem 1.5rem;
+    border: 1px solid #0c1a12;
+    border-radius: 10px;
+    padding: 1.5rem 1.75rem;
     margin: 1.5rem 0;
-    background: #4a3221;
-    color: #f0e6d8;
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(160deg, #16291d 0%, #0e1f15 100%);
+    color: #dde7da;
+    box-shadow: inset 0 1px 0 rgba(196, 178, 110, 0.08),
+                0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .album a {
-    color: #e8c49a;
+    color: #cbb682;
 }
 
 .album-head {
     margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #6b4d36;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #c4b26e44;
 }
 
 .album-title {
     display: block;
-    font-size: 1.4rem;
-    letter-spacing: 0.02em;
-    color: #fbf3e7;
+    font-size: 1.45rem;
+    letter-spacing: 0.06em;
+    color: #e7dcb0;
 }
 
 .album-by {
     display: block;
-    color: #c9ab8c;
+    color: #8fae93;
     font-style: italic;
     font-size: 0.95rem;
 }
@@ -118,7 +119,7 @@ ul li {
 
 .song {
     padding: 0.6rem 0;
-    border-bottom: 1px solid #5e4631;
+    border-bottom: 1px solid #234231;
 }
 
 .song:last-child {
@@ -156,13 +157,13 @@ ul li {
 
 .track-note {
     display: inline-block;
-    color: #e0a07f;
+    color: #b9986a;
     font-style: italic;
     font-size: 0.85rem;
 }
 
 .track-num {
     flex: none;
-    color: #c9ab8c;
+    color: #cbb682;
     font-variant-numeric: tabular-nums;
 }
