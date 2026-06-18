@@ -33,7 +33,7 @@ body {
     margin: 1rem auto;
     padding: 0.5in;
     box-sizing: border-box;
-    border: 1px solid #ccc; /* show page boundary on screen */
+    border: 1px solid #ccc;
     background: white;
     page-break-after: always;
 }
