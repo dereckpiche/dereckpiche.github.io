@@ -3,81 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Dereck's Website</title>
+<title>My music — Dereck Piche</title>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
-<h1>Music</h1>
-<div class="album">
-  <div class="album-head">
-    <span class="album-title">Beyond Zeropolis</span>
-    <span class="album-status">work in progress</span>
+<body class="music-page">
+<a class="skip-link" href="#main">Skip to content</a><main id="main"><div class="page-heading"><h1>My music</h1></div>
+<div class="songs">
+  <div class="song">
+    <div class="song-name">Oblivion</div>
+    <iframe title="Oblivion (acoustic demo)" class="sc-player" allow="autoplay" scrolling="no" frameborder="no"
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dereck-piche/oblivion-acoustic-demo&color=%23284e79&visual=false&show_artwork=false&show_user=false&show_comments=false&download=false&sharing=false&buying=false&auto_play=false"></iframe>
   </div>
-  <div class="songs">
-    <div class="song">
-      <div class="song-head">
-        <span class="track-num">1.</span>
-        <span class="song-name">Fasten</span>
-      </div>
-      <div class="recordings"></div>
-    </div>
 
-    <div class="song">
-      <div class="song-head">
-        <span class="track-num">2.</span>
-        <span class="song-name">Aeolian</span>
-      </div>
-      <div class="recordings"></div>
-    </div>
-
-    <div class="song">
-      <div class="song-head">
-        <span class="track-num">3.</span>
-        <span class="song-name">Sonnet</span>
-      </div>
-      <div class="recordings"></div>
-    </div>
-
-    <div class="song">
-      <div class="song-head">
-        <span class="track-num">4.</span>
-        <span class="song-name">Oblivion</span>
-      </div>
-      <div class="recordings">
-        <div class="recording">
-          <iframe class="sc-player" allow="autoplay" scrolling="no" frameborder="no"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dereck-piche/oblivion-acoustic-demo&color=%231a4fd6&visual=false&show_artwork=false&show_user=false&show_comments=false&download=false&sharing=false&buying=false&auto_play=false"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="song">
-      <div class="song-head">
-        <span class="track-num">5.</span>
-        <span class="song-name">Ceremir</span>
-      </div>
-      <div class="recordings">
-        <div class="recording">
-          <iframe class="sc-player" allow="autoplay" scrolling="no" frameborder="no"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dereck-piche/dereck-piche-ceremir-acoustic&color=%231a4fd6&visual=false&show_artwork=false&show_user=false&show_comments=false&download=false&sharing=false&buying=false&auto_play=false"></iframe>
-        </div>
-      </div>
-    </div>
+  <div class="song">
+    <div class="song-name">Ceremir</div>
+    <iframe title="Ceremir (acoustic)" class="sc-player" allow="autoplay" scrolling="no" frameborder="no"
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dereck-piche/dereck-piche-ceremir-acoustic&color=%23284e79&visual=false&show_artwork=false&show_user=false&show_comments=false&download=false&sharing=false&buying=false&auto_play=false"></iframe>
   </div>
 </div>
 
 <p><a href="index.html">&larr; back</a></p>
 
-<script>
-Array.prototype.slice.call(document.querySelectorAll('.song')).forEach(function (song) {
-  var list = song.querySelector('.recordings');
-  if (!list.querySelector('.recording')) {
-    var note = document.createElement('span');
-    note.className = 'track-note';
-    note.textContent = 'no public recording yet';
-    list.appendChild(note);
-  }
-});
-</script>
+</main>
 </body>
 </html>
